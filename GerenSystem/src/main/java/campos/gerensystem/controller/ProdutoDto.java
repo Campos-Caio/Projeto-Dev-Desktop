@@ -2,59 +2,65 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package campos.gerensystem.model;
-import javax.persistence.*;
-import java.util.ArrayList;
+package campos.gerensystem.controller;
+
+import campos.gerensystem.model.Produto;
 
 /**
  *
  * @author Campos
  */
-@Entity
-public class Produto {
+public class ProdutoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codProd;
-    @Column(length = 10)
-    private String marca;
-    @Column(length = 30)
-    private String categoria;
-    @Column(length = 50)
-    private String fornecedor;
-    @Column(length = 30)
-    private String validadeProd;
-    private Integer qtdeRecebida;
-    private Integer qtdeMinEstoque;
-    private Double valorProd;
-    private Double valorVenda;
+    public Long codProd;
 
-    @ManyToOne
-    @JoinColumn(name = "estoque_id")
-    private Estoque estoque;
+    public String marca;
+    public String categoria;
+    public String fornecedor;
+    public String validadeProd;
+    public Integer qtdeRecebida;
+    public Integer qtdeMinEstoque;
+    public Double valorProd;
+    public Double valorVenda;
 
-    @ManyToOne
-    @JoinColumn(name = "validade_id")
-    private Validade validade;
-
-    public Produto(Long codProd, String marca, String categoria, String fornecedor, String validadeProd, Integer qtdeRecebida, Integer qtdeMinEstoque, Double valorProd, Double valorVenda) {
-        this.codProd = codProd;
-        this.marca = marca;
-        this.categoria = categoria;
-        this.fornecedor = fornecedor;
-        this.validadeProd = validadeProd;
-        this.qtdeRecebida = qtdeRecebida;
-        this.qtdeMinEstoque = qtdeMinEstoque;
-        this.valorProd = valorProd;
-        this.valorVenda = valorVenda;
+    public ProdutoDto() {
     }
 
     public Long getCodProd() {
         return codProd;
     }
 
-    public void setCodProd(Long codProd) {
-        this.codProd = codProd;
+    public void setCodProd(Long id) {
+        this.codProd = id;
+    }
+
+    public Produto builder(){
+        Produto produto = new Produto();
+
+        produto.setCodProd(codProd);
+        produto.setCategoria(categoria);
+        produto.setFornecedor(fornecedor);
+        produto.setMarca(marca);
+        produto.setValidadeProd(validadeProd);
+        produto.setQtdeRecebida(qtdeRecebida);
+        produto.setQtdeMinEstoque(qtdeMinEstoque);
+        produto.setValorProd(valorProd);
+        produto.setValorVenda(valorVenda);
+
+        return produto;
+    }
+
+    public ProdutoDto(Produto produto){
+
+        this.codProd = produto.getCodProd();
+        this.marca = produto.getMarca();
+        this.categoria = produto.getCategoria();
+        this.fornecedor = produto.getFornecedor();
+        this.validadeProd = produto.getValidadeProd();
+        this.qtdeRecebida = produto.getQtdeRecebida();
+        this.qtdeMinEstoque = produto.getQtdeMinEstoque();
+        this.valorProd = produto.getValorProd();
+        this.valorVenda = produto.getValorVenda();
     }
 
     public String getMarca() {
@@ -120,18 +126,5 @@ public class Produto {
     public void setValorVenda(Double valorVenda) {
         this.valorVenda = valorVenda;
     }
-    public Produto() {
 
-    }
-    
-    // Metodos da classe
-    public void cadastrar(){
-    
-    }
-    public void alterar(){
-    
-    }
-    public void buscar(){
-    
-    }
 }

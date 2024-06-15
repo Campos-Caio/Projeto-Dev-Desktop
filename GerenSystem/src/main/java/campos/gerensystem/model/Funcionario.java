@@ -1,59 +1,58 @@
 package campos.gerensystem.model;
 
 import java.util.ArrayList;
-
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  *
  * @author Campos
  */
-public class Funcionario {
-    private String nomeCompleto; 
-    private String CPF; 
-    private String dataNasc; 
-    private String endereco; 
-    private String sexo; 
-    private String telefone; 
-    private String email; 
-    private String dataAdmissao; 
-    private Float salario; 
-    private String cargo; 
-    private String funcao; 
-    private String login; 
-    private String senha; 
-    
-    public Funcionario(String nomeCompleto, String CPF, String dataNasc, String endereco, String sexo, String telefone, String email, String dataAdmissao, Float salario, String cargo, String funcao, String login, String senha) {
-        this.nomeCompleto = nomeCompleto;
-        this.CPF = CPF;
-        this.dataNasc = dataNasc;
-        this.endereco = endereco;
-        this.sexo = sexo;
-        this.telefone = telefone;
-        this.email = email;
-        this.dataAdmissao = dataAdmissao;
-        this.salario = salario;
-        this.cargo = cargo;
-        this.funcao = funcao;
-        this.login = login;
-        this.senha = senha;
+@Entity
+public class Funcionario implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(length = 30)
+    private String nome;
+    @Column(length = 20)
+    private String cpf;
+    private String dataNasc;
+    private String endereco;
+    private String sexo;
+    private String telefone;
+    @Column(unique = true)
+    private String email;
+    private String dataAdmissao;
+    private Float salario;
+    private String login;
+    private String senha;
+
+    @ManyToOne
+    @JoinColumn(name = "estoque_id")
+    private Estoque estoque;
+
+    public Long getId(){
+        return this.id;
     }
 
-    public Funcionario() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDataNasc() {
@@ -110,22 +109,6 @@ public class Funcionario {
 
     public void setSalario(Float salario) {
         this.salario = salario;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public String getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
     }
 
     public String getLogin() {

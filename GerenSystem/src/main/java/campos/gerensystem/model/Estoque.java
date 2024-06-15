@@ -3,36 +3,47 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package campos.gerensystem.model;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author Campos
  */
+@Entity
 public class Estoque {
-    private long estoqueAtual; 
-    private long estoqueAnterior; 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long estoqueAtual;
+    private Long estoqueAnterior;
 
-    public Estoque(long estoqueAtual, long estoqueAnterior) {
+    @OneToMany(mappedBy = "estoque")
+    private Set<Funcionario> funcionarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "estoque")
+    private Set<Produto> produtos = new HashSet<>();
+
+    @OneToMany(mappedBy = "estoque")
+    private Set<Entrada> entradas = new HashSet<>();
+
+    @OneToMany(mappedBy = "estoque")
+    private Set<Saida> saidas = new HashSet<>();
+
+    public void setEstoqueAtual(Long estoqueAtual) {
         this.estoqueAtual = estoqueAtual;
-        this.estoqueAnterior = estoqueAnterior;
     }
 
-    public Estoque() {
-    }
-
-    public long getEstoqueAtual() {
+    public Long getEstoqueAtual() {
         return estoqueAtual;
     }
 
-    public void setEstoqueAtual(long estoqueAtual) {
-        this.estoqueAtual = estoqueAtual;
-    }
-
-    public long getEstoqueAnterior() {
+    public Long getEstoqueAnterior() {
         return estoqueAnterior;
     }
 
-    public void setEstoqueAnterior(long estoqueAnterior) {
+    public void setEstoqueAnterior(Long estoqueAnterior) {
         this.estoqueAnterior = estoqueAnterior;
     }
     

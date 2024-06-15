@@ -8,7 +8,9 @@ package campos.gerensystem.model;
  *
  * @author Campos
  */
+
 public class Entrada {
+    private Integer Id; 
     private String dataEntrada;
     private String notaFiscal; 
     private String secao; 

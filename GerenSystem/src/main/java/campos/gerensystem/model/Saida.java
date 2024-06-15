@@ -3,37 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package campos.gerensystem.model;
-
+import javax.persistence.*;
 /**
  *
  * @author Campos
  */
+@Entity
 public class Saida {
-    private String motivoSaida; 
-    private String dataSaida; 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String motivo;
+    private String dtSaida;
+
+    @ManyToOne
+    @JoinColumn(name = "estoque_id")
+    private Estoque estoque;
 
     public Saida(String motivoSaida, String dataSaida) {
-        this.motivoSaida = motivoSaida;
-        this.dataSaida = dataSaida;
+        this.motivo = motivoSaida;
+        this.dtSaida = dataSaida;
     }
 
     public Saida() {
+
     }
 
-    public String getMotivoSaida() {
-        return motivoSaida;
+    public Long getId() {
+        return id;
     }
 
-    public void setMotivoSaida(String motivoSaida) {
-        this.motivoSaida = motivoSaida;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getDataSaida() {
-        return dataSaida;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setDataSaida(String dataSaida) {
-        this.dataSaida = dataSaida;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public String getDtSaida() {
+        return dtSaida;
+    }
+
+    public void setDtSaida(String dtSaida) {
+        this.dtSaida = dtSaida;
     }
     
     public void Login(){

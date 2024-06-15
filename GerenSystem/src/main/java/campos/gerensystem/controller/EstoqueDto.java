@@ -1,0 +1,27 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package campos.gerensystem.controller;
+
+import campos.gerensystem.model.Estoque;
+
+/**
+ *
+ * @author Campos
+ */
+public class EstoqueDto {
+    public Long estoqueAtual;
+    public Long estoqueAnterior;
+
+    public Estoque builder() {
+        Estoque estoque = new Estoque();
+        estoque.setEstoqueAtual(estoqueAtual);
+        estoque.setEstoqueAnterior(estoqueAnterior);
+        return estoque;
+    }
+    public EstoqueDto (Estoque estoque){
+        this.estoqueAtual = estoque.getEstoqueAtual();
+        this.estoqueAnterior = estoque.getEstoqueAnterior();
+    }
+}
